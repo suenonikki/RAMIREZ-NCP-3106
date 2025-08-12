@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel Grace Portfolio</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      transition: all 0.3s ease;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23ffffff" opacity="0.1" /></svg>');
+      background-size: 200px 200px;
+      background-blend-mode: overlay;
+    }
+
+    .home {
+      height: 100vh;
+      background-color: #87CEEB;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      position: relative;
+      overflow: hidden;
+      background-size: 150px 150px;
+      background-blend-mode: soft-light;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0L61.8 35.35L100 38.19L72.36 64.64L78.04 100L50 82.5L21.96 100L27.64 64.64L0 38.19L38.2 35.35L50 0Z" fill="%23ffffff" opacity="0.1" /></svg>');
+      padding: 20px;
+    }
+
+    .home-left {
+      flex: 1;
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      height: 100%;
+      position: relative;
+    }
+
+    .home-image-container {
+      position: relative;
+      width: auto; /* Adjust based on image aspect ratio and max-height */
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home-image {
+      max-height: 100vh; /* Allow image to fill height */
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+      z-index: 0;
+      width: auto; /* Maintain aspect ratio */
+      max-width: 100%; /* Allow it to be larger, but still responsive */
+      height: 100%; /* Make image fill vertical space */
+      position: relative; /* Needed for pseudo-element positioning */
+      overflow: hidden; /* Hide overflowing pseudo-element if not positioned well */
+    }
+
+    .home-image::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 50%,
+            rgba(0, 0, 0, 0.5) 100%
+        ); /* Diagonal gradient shadow from bottom right */
+        pointer-events: none; /* Allows clicks to pass through */
+        z-index: 1; /* Above the image */
+        mix-blend-mode: multiply; /* Blends with the image */
+    }
+
+    /* CPE Icons for Home Section */
+    .cpe-icon {
+        position: absolute;
+        font-size: 3rem; /* Adjust size as needed */
+        color: rgba(255, 255, 255, 0.15); /* Light opacity */
+        z-index: -1; /* Behind the image and content */
+        animation: floatEffect 8s infinite ease-in-out; /* Floating animation */
+        pointer-events: none;
+    }
+
+    .cpe-icon.chip { top: 15%; left: 10%; font-size: 4rem; animation-delay: 0s; }
+    .cpe-icon.server { bottom: 20%; right: 15%; font-size: 3.5rem; animation-delay: 2s; }
+    .cpe-icon.code { top: 30%; right: 5%; font-size: 3rem; animation-delay: 4s; }
+    .cpe-icon.wifi { bottom: 10%; left: 5%; font-size: 2.8rem; animation-delay: 6s; }
+    .cpe-icon.cube { top: 5%; left: 50%; font-size: 4.2rem; animation-delay: 1s; }
+    .cpe-icon.cpu { bottom: 5%; left: 40%; font-size: 3.8rem; animation-delay: 3s; }
+    .cpe-icon.circuit { top: 20%; left: 30%; font-size: 3.2rem; animation-delay: 5s; }
+
+
+    @keyframes floatEffect {
+        0% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+        25% { transform: translateY(-10px) rotate(5deg); opacity: 0.18; }
+        50% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+        75% { transform: translateY(10px) rotate(-5deg); opacity: 0.18; }
+        100% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+    }
+
+
+    .home-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      text-shadow: 0 0 15px rgba(0,0,0,0.7), 0 0 10px rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 50%;
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    .home-right h1 {
+        font-size: 4.5rem;
+        margin-bottom: 10px;
+        line-height: 1.1;
+    }
+
+    .home-right p {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .home-right .inspiring-message {
+      font-size: 1.3rem;
+      margin-top: 25px;
+      line-height: 1.5;
+      max-width: 450px;
+      align-self: center;
+    }
+
+    .home-icons {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        color: white;
+        font-size: 3rem;
+        text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+
+    .home-icons .bx {
+        transition: transform 0.3s ease, color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .home-icons .bx:hover {
+        transform: scale(1.2);
+        color: #FFD700;
+    }
+
+    @media (max-width: 1024px) {
+        .home-right h1 {
+            font-size: 3.5rem;
+        }
+        .home-right p {
+            font-size: 1.1rem;
+        }
+        .home-right .inspiring-message {
+            font-size: 1.2rem;
+            max-width: 400px;
+        }
+        .home-icons {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .home {
+            flex-direction: column;
+            padding: 10px;
+            height: auto;
+        }
+        .home-left {
+            height: 50vh;
+            align-items: center; /* Center vertically on mobile too */
+            justify-content: center; /* Center horizontally on mobile too */
+        }
+        .home-image {
+            max-height: 100%;
+            width: auto;
+            position: relative; /* Remove absolute positioning */
+            bottom: auto;
+            left: auto;
+        }
+        .home-right {
+            max-width: 90%;
+            padding: 15px;
+            margin-top: 20px;
+            height: auto;
+            justify-content: center;
+        }
+        .home-right h1 {
+            font-size: 2.8rem;
+        }
+        .home-right p {
+            font-size: 1rem;
+        }
+        .home-right .inspiring-message {
+            font-size: 1.1rem;
+            max-width: 90%;
+        }
+        .home-icons {
+            font-size: 2rem;
+        }
+        /* Hide CPE icons on smaller screens for better readability */
+        .cpe-icon {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .home-right h1 {
+            font-size: 2.2rem;
+        }
+        .home-right p {
+            font-size: 0.9rem;
+        }
+        .home-right .inspiring-message {
+            font-size: 1.1rem;
+        }
+        .home-icons {
+            font-size: 1.8rem;
+            gap: 15px;
+        }
+    }
+
+    .education {
+      background-color: #90EE90;
+      background-size: 180px 180px;
+      background-blend-mode: lighten;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" rx="10" ry="10" fill="%23ffffff" opacity="0.1" /></svg>');
+      flex-direction: column;
+      padding: 50px 20px;
+      min-height: auto;
+      height: auto;
+      justify-content: flex-start;
+      overflow-x: hidden;
+    }
+
+    .seminars {
+      background-color: #FFD700;
+      /* Updated background for seminars */
+      background-size: 150px 150px;
+      background-blend-mode: multiply;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0L100 50L50 100L0 50Z" fill="%23ffffff" opacity="0.15"/></svg>');
+      flex-direction: column;
+      padding: 50px 20px;
+      min-height: auto;
+      height: auto;
+      justify-content: flex-start;
+    }
+
+    .skills {
+      background-color: #FFB6C1;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23ffffff" opacity="0.1" /></svg>');
+      background-size: 200px 200px;
+      background-blend-mode: overlay;
+      flex-direction: column;
+      padding: 50px 0;
+      justify-content: flex-start;
+      min-height: 70vh;
+      height: auto;
+    }
+
+    .skills h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .skills h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: white;
+        border-radius: 2px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      justify-content: flex-start;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      margin: 0 10px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      width: 200px;
+      user-select: none;
+    }
+
+    .military-medal {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .military-medal:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      background: linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.15));
+    }
+
+    .military-medal::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top left, rgba(255,255,255,0.2) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .military-medal:hover::before {
+        opacity: 1;
+    }
+
+    .skill-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        transition: transform 0.3s ease;
+    }
+
+    .military-medal:hover .skill-icon {
+        transform: scale(1.1);
+    }
+
+    .medal-title {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      line-height: 1.2;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .medal-note {
+      display: none;
+    }
+
+    .mastered-skill .military-medal {
+        border: 3px solid #FFD700;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
+        animation: pulseGlow 2s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+        from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.4); }
+        to { box-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 40px rgba(255, 215, 0, 0.6); }
+    }
+
+    .mastered-skill .military-medal::before {
+        background: radial-gradient(circle at top left, rgba(255,255,255,0.3) 0%, transparent 60%);
+    }
+
+    .mastered-skill .military-medal .skill-icon {
+        color: white;
+    }
+
+    .mastered-skill .military-medal .mastery-star {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        font-size: 1.5rem;
+        z-index: 5;
+        text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 15px 18px;
+      cursor: pointer;
+      font-size: 1.8rem;
+      border-radius: 50%;
+      z-index: 10;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    .carousel-button:hover {
+      background: rgba(0,0,0,0.7);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        background: rgba(255,255,255,0.4);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .dot.active {
+        background: white;
+        transform: scale(1.2);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+
+    .skills-footer-text {
+      margin-top: 40px;
+      font-size: 1.2rem;
+      color: white;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      max-width: 800px;
+      padding: 0 20px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .projects {
+      background-color: #ADD8E6;
+      background-size: 250px 250px;
+      background-blend-mode: soft-light;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0L100 50L50 100L0 50Z" fill="%23ffffff" opacity="0.1" /></svg>');
+      flex-direction: column;
+      padding: 50px 20px;
+      text-align: center;
+      padding-top: 50px;
+      padding-bottom: 30px;
+      height: 50vh;
+    }
+
+    .projects h2 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    .project-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1100px;
+      margin-bottom: 15px;
+    }
+
+    .project-box {
+      background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .project-box:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+
+    .project-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      background: white;
+      color: black;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      position: relative;
+      margin: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #555;
+      transition: color 0.2s ease;
+    }
+
+    .close-btn:hover {
+        color: #333;
+    }
+
+    .modal-content h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .modal-content h3 {
+        font-size: 1.4rem;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: #444;
+      text-align: justify;
+    }
+
+    .modal-content ul {
+        list-style-type: none;
+        margin: 10px 0 20px 0px;
+        padding-left: 0;
+        text-align: left;
+        color: #444;
+    }
+
+    .modal-content ul li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .modal-content ul li .bx {
+        margin-right: 8px;
+        font-size: 1.1em;
+        color: #90EE90;
+        flex-shrink: 0;
+    }
+
+    .modal-content .modal-text-with-icon {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        color: #444;
+        font-size: 1rem;
+    }
+
+    .modal-content .modal-text-with-icon .bx {
+        margin-right: 8px;
+        font-size: 1.2em;
+        color: #90EE90;
+        flex-shrink: 0;
+    }
+
+    .modal-buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .modal-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .modal-button.secondary {
+        background-color: #6c757d;
+    }
+
+    .modal-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
+    .modal-button.secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .contact {
+      background-color: #B0C4DE;
+      background-size: 100px 100px;
+      background-blend-mode: hard-light;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.08" /></svg>');
+      flex-direction: row;
+      padding: 40px;
+      gap: 40px;
+    }
+
+    .contact-left {
+      flex: 1;
+    }
+
+    .contact-left h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-left p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-left .info {
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+
+    .contact-left .info div {
+      margin: 5px 0;
+    }
+
+    .contact-left .info a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-left .info a:hover {
+      color: #eee;
+      text-decoration: underline;
+    }
+
+    .contact-right {
+      flex: 1;
+    }
+
+    .contact-right form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-right input,
+    .contact-right textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    .contact-right textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    footer {
+      background-color: #E0FFFF;
+      background-size: 80px 80px;
+      background-blend-mode: overlay;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><line x1="0" y1="0" x2="100" y2="100" stroke="%23ffffff" stroke-width="1" opacity="0.05" /><line x1="100" y1="0" x2="0" y2="100" stroke="%23ffffff" stroke-width="1" opacity="0.05" /></svg>');
+      padding: 4px 0;
+      text-align: center;
+      font-size: 0.5rem;
+      color: #333;
+    }
+
+    .hover-bar {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+      background-color: rgba(255,255,255,0.2);
+      padding: 10px 20px;
+      border-radius: 0 0 20px 20px;
+      backdrop-filter: blur(5px);
+      z-index: 998;
+    }
+
+    .hover-bar a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .hover-bar a:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px white;
+    }
+
+    .projects-footer-text, .education-footer-text, .seminars-footer-text {
+      margin-top: 0px;
+      font-size: 1.2rem;
+      color: white;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      max-width: 800px;
+      padding: 0 20px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-icon {
+        font-size: 4rem;
+        margin-right: 0;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        color: white;
+    }
+
+    .education {
+        flex-direction: column;
+        padding: 50px 20px;
+        min-height: auto;
+        height: auto;
+        justify-content: flex-start;
+        overflow-x: hidden;
+    }
+
+    .education h2, .seminars h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        text-align: center;
+        text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    .education-cards-container, .seminar-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        width: 100%;
+        max-width: 1100px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        justify-items: center;
+    }
+
+    .education-compact-card, .seminar-card {
+        background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        padding: 25px 20px;
+        width: 100%;
+        min-height: 180px;
+        max-width: 250px;
+        color: white;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .education-compact-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3), 0 0 15px rgba(144,238,144,0.7);
+        border-color: rgba(144,238,144,0.8);
+    }
+
+    .seminar-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3), 0 0 15px rgba(255,215,0,0.7);
+        border-color: rgba(255,215,0,0.8);
+    }
+
+    .education-compact-card::before, .seminar-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top left, rgba(255,255,255,0.25) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .education-compact-card:hover::before, .seminar-card:hover::before {
+        opacity: 1;
+    }
+
+    .education-card-icon, .seminar-card-icon {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        color: white;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        transition: transform 0.3s ease;
+    }
+
+    .education-card-image, .seminar-card-image {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .education-compact-card:hover .education-card-image, .seminar-card:hover .seminar-card-image {
+        transform: scale(1.1);
+    }
+
+    .education-card-title, .seminar-card-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+        line-height: 1.2;
+        color: white;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .education-card-years, .seminar-card-date {
+        font-size: 0.95rem;
+        color: #eee;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
+
+    .seminar-card-text {
+        font-size: 0.9rem;
+        color: #ddd;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+        margin-top: 10px;
+        max-height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+
+    @media (max-width: 768px) {
+        .education-cards-container, .seminar-cards-container {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .education-compact-card, .seminar-card {
+            padding: 20px 15px;
+            min-height: 160px;
+        }
+        .education-card-icon, .seminar-card-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .education-card-image, .seminar-card-image {
+            width: 70px;
+            height: 70px;
+        }
+        .education-card-title, .seminar-card-title {
+            font-size: 1.2rem;
+        }
+        .education-card-years, .seminar-card-date {
+            font-size: 0.9rem;
+        }
+        .seminar-card-text {
+            font-size: 0.85rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .education h2, .seminars h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        .education-cards-container, .seminar-cards-container {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+        .education-compact-card, .seminar-card {
+            padding: 15px 10px;
+            min-height: 140px;
+        }
+        .education-card-icon, .seminar-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        .education-card-image, .seminar-card-image {
+            width: 60px;
+            height: 60px;
+        }
+        .education-card-title, .seminar-card-title {
+            font-size: 1.05rem;
+        }
+        .education-card-years, .seminar-card-date {
+            font-size: 0.85rem;
+        }
+        .seminar-card-text {
+            font-size: 0.8rem;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="hover-bar">
+    <a href="#home">Home</a>
+    <a href="#education">Education</a>
+    <a href="#seminars">Seminars</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <section class="home" id="home">
+    <div class="home-left">
+      <div class="home-image-container">
+        <img src="https://raw.githubusercontent.com/suenonikki/my-profile-site/main/ANGEANGE1.png" alt="Angel Grace Profile" class="home-image">
+      </div>
+      <i class='bx bx-chip cpe-icon chip'></i>
+      <i class='bx bx-server cpe-icon server'></i>
+      <i class='bx bx-code-alt cpe-icon code'></i>
+      <i class='bx bx-wifi-2 cpe-icon wifi'></i>
+      <i class='bx bx-cube-alt cpe-icon cube'></i>
+      <i class='bx bxl-spring-boot cpe-icon cpu'></i> <i class='bx bx-circuit cpe-icon circuit'></i>
+    </div>
+    <div class="home-right">
+      <h1>HI! MY NAME IS ANGEL GRACE C. RAMIREZ</h1>
+      <p>An aspiring Computer Engineering student here at the University of the East.</p>
+      <p class="inspiring-message">Dream big, work hard, stay focused & surround yourself with good people.</p>
+      <div class="home-icons">
+          <a href="https://www.facebook.com/angelgrace.ramirez.1" target="_blank" rel="noopener noreferrer"><i class='bx bxl-facebook-square'></i></a>
+          <a href="https://www.instagram.com/agramirez_4/profilecard/?igsh=dmE1aXBncDBoeHg5" target="_blank" rel="noopener noreferrer"><i class='bx bxl-instagram-alt'></i></a>
+          <a href="https://www.tiktok.com/@hexxsteam?_t=ZS-8yowGZi0tim&_r=1" target="_blank" rel="noopener noreferrer"><i class='bx bxl-tiktok'></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="education" id="education">
+    <div class="section-icon"><i class='bx bxs-graduation'></i></div>
+    <h2>My Academic Journey</h2>
+    <div class="education-cards-container">
+      <div class="education-compact-card" onclick="openEducationModal('Bachelor of Science in Computer Engineering')">
+        <img src="https://raw.githubusercontent.com/suenonikki/my-profile-site/main/UE.png" alt="UE Logo" class="education-card-image">
+        <div class="education-card-title">BS in Comp. Eng</div>
+      </div>
+      <div class="education-compact-card" onclick="openEducationModal('Senior High School - STEM Strand')">
+        <img src="https://raw.githubusercontent.com/suenonikki/my-profile-site/main/PUNP.png" alt="PUNP Logo" class="education-card-image">
+        <div class="education-card-title">SHS - STEM</div>
+      </div>
+      <div class="education-compact-card" onclick="openEducationModal('Junior High School')">
+        <img src="https://raw.githubusercontent.com/suenonikki/my-profile-site/main/PUNP.png" alt="PUNP Logo" class="education-card-image">
+        <div class="education-card-title">Junior High School</div>
+      </div>
+      <div class="education-compact-card" onclick="openEducationModal('Elementary School')">
+        <img src="https://raw.githubusercontent.com/suenonikki/my-profile-site/main/PUNP.png" alt="PUNP Logo" class="education-card-image">
+        <div class="education-card-title">Elementary School</div>
+      </div>
+    </div>
+    <div class="education-footer-text">
+      "Every step of my education has built the foundation for my passion in technology and continuous growth."
+    </div>
+  </section>
+
+  <section class="seminars" id="seminars">
+    <div class="section-icon"><i class='bx bx-book-reader'></i></div>
+    <h2>Seminars & Trainings</h2>
+    <div class="seminar-cards-container">
+      <div class="seminar-card" onclick="handleSeminarClick('seminar1')">
+        <div class="seminar-card-icon"><i class='bx bxs-platform'></i></div>
+        <div class="seminar-card-title">Cybersecurity Forum</div>
+        <div class="seminar-card-date"></div>
+        <div class="seminar-card-text">Attended a comprehensive forum on modern cybersecurity threats and defense strategies.</div>
+      </div>
+      <div class="seminar-card" onclick="handleSeminarClick('seminar2')">
+        <div class="seminar-card-icon"><i class='bx bx-mobile-alt'></i></div>
+        <div class="seminar-card-title">Mobile App Dev Workshop</div>
+        <div class="seminar-card-date"></div>
+        <div class="seminar-card-text">Hands-on workshop covering the basics of Android application development.</div>
+      </div>
+      <div class="seminar-card" onclick="handleSeminarClick('seminar3')">
+        <div class="seminar-card-icon"><i class='bx bx-cloud'></i></div>
+        <div class="seminar-card-title">Cloud Computing Basics</div>
+        <div class="seminar-card-date"></div>
+        <div class="seminar-card-text">Introduction to cloud services, deployment models, and key providers.</div>
+      </div>
+      <div class="seminar-card" onclick="handleSeminarClick('seminar4')">
+        <div class="seminar-card-icon"><i class='bx bx-code-alt'></i></div>
+        <div class="seminar-card-title">Emerging Technologies Set 2</div>
+        <div class="seminar-card-date"></div>
+        <div class="seminar-card-text">Explore the latest trends in AI, IoT, and more for 3rd & 4th year students.</div>
+      </div>
+    </div>
+    <div class="seminars-footer-text">
+      "Continuous learning is the cornerstone of progress. Each seminar is a step towards mastering new horizons."
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <h2>Skills/Stats 📈</h2>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="skillCarouselTrack">
+        <div class="carousel-item mastered-skill">
+          <div class="military-medal" onclick="openSkillModal(this, 'Singing')">
+            <div class="skill-icon"><i class='bx bxs-microphone'></i></div>
+            <span class="medal-title">Singing 🎤</span>
+            <span class="mastery-star">⭐</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic HTML')">
+            <div class="skill-icon"><i class='bx bxl-html5'></i></div>
+            <span class="medal-title">Basic HTML</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic CSS')">
+            <div class="skill-icon"><i class='bx bxl-css3'></i></div>
+            <span class="medal-title">Basic CSS</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic JavaScript')">
+            <div class="skill-icon"><i class='bx bxl-javascript'></i></div>
+            <span class="medal-title">Basic JavaScript</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Python')">
+            <div class="skill-icon"><i class='bx bxl-python'></i></div>
+            <span class="medal-title">Basic Python</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Packet Tracer')">
+            <div class="skill-icon"><i class='bx bxs-router'></i></div>
+            <span class="medal-title">Basic Packet Tracer</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Drawing')">
+            <div class="skill-icon"><i class='bx bxs-pencil'></i></div>
+            <span class="medal-title">Drawing</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic PC Troubleshooting and Maintenance')">
+            <div class="skill-icon"><i class='bx bx-wrench'></i></div>
+            <span class="medal-title">Basic PC Troubleshooting and Maintenance</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Being Athletic')">
+            <div class="skill-icon"><i class='bx bxs-running'></i></div>
+            <span class="medal-title">Being Athletic</span>
+            <span class="mastery-star">⭐</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Java')">
+            <div class="skill-icon"><i class='bx bxl-java'></i></div>
+            <span class="medal-title">Basic Java</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Arduino')">
+            <div class="skill-icon"><i class='bx bxl-arduino'></i></div>
+            <span class="medal-title">Basic Arduino</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Communication')">
+            <div class="skill-icon"><i class='bx bx-conversation'></i></div>
+            <span class="medal-title">Communication</span>
+            <span class="mastery-star">⭐</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Creativity')">
+            <div class="skill-icon"><i class='bx bx-lightbulb-alt'></i></div>
+            <span class="medal-title">Creativity</span>
+            <span class="mastery-star">⭐</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Debugging')">
+            <div class="skill-icon"><i class='bx bx-bug'></i></div>
+            <span class="medal-title">Basic Debugging</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Problem Solving')">
+            <div class="skill-icon"><i class='bx bx-search-alt'></i></div>
+            <span class="medal-title">Problem Solving</span>
+            <span class="mastery-star">⭐</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Microprocessor Design')">
+            <div class="skill-icon"><i class='bx bx-chip'></i></div>
+            <span class="medal-title">Basic Microprocessor Design</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Coding')">
+            <div class="skill-icon"><i class='bx bx-code'></i></div>
+            <span class="medal-title">Basic Coding</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Software Development')">
+            <div class="skill-icon"><i class='bx bx-laptop-code'></i></div>
+            <span class="medal-title">Basic Software Development</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="military-medal" onclick="openSkillModal(this, 'Basic Data Structures and Algorithms')">
+            <div class="skill-icon"><i class='bx bx-sort-alt-2'></i></div>
+            <span class="medal-title">Basic Data Structures and Algorithms</span>
+            <span class="medal-note"></span>
+          </div>
+        </div>
+        <div class="carousel-item">
+            <div class="military-medal" onclick="openSkillModal(this, 'Basic Coding Skills')">
+                <div class="skill-icon"><i class='bx bx-terminal'></i></div>
+                <span class="medal-title">Basic Coding Skills</span>
+                <span class="medal-note"></span>
+            </div>
+        </div>
+      </div>
+      <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+      <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots">
+    </div>
+    <div class="skills-footer-text">
+      "Every skill acquired is a step towards a brighter horizon."
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-container">
+      <div class="project-box" onclick="openProjectModal('Portfolio Website')">
+        <div class="project-icon"><i class='bx bx-laptop'></i></div>
+        <div class="project-title">Portfolio Website</div>
+      </div>
+      <div class="project-box" onclick="openProjectModal('Android Studio Application')">
+        <div class="project-icon"><i class='bx bxl-android'></i></div>
+        <div class="project-title">Android Studio Application</div>
+      </div>
+      <div class="project-box" onclick="openProjectModal('High and Low Python Code')">
+        <div class="project-icon"><i class='bx bxl-python'></i></div>
+        <div class="project-title">High and Low Python Code</div>
+      </div>
+      <div class="project-box" onclick="openProjectModal('Stopwatch Game')">
+        <div class="project-icon"><i class='bx bx-stopwatch'></i></div>
+        <div class="project-title">Stopwatch Game</div>
+      </div>
+      <div class="project-box" onclick="openProjectModal('Guessing Game')">
+        <div class="project-icon"><i class='bx bx-question-mark'></i></div>
+        <div class="project-title">Guessing Game</div>
+      </div>
+    </div>
+    <div class="projects-footer-text">
+      "Every project is a step forward, a challenge embraced, and a skill mastered. Excited to build what's next!"
+    </div>
+  </section>
+
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeProjectModal()">&times;</span>
+      <h2 id="projectModalTitle"></h2>
+      <p id="projectModalDescription"></p>
+      <h3 style="text-align: left; margin-top: 20px; color: #333;">Technologies Used:</h3>
+      <ul id="projectModalTechs"></ul>
+      <h3 style="text-align: left; margin-top: 20px; color: #333;">Key Learnings:</h3>
+      <ul id="projectModalLearnings"></ul>
+      <div class="modal-buttons">
+          <button id="liveDemoBtn" class="modal-button" onclick="openLink(this.getAttribute('data-link'))">Live Demo</button>
+          <button id="sourceCodeBtn" class="modal-button secondary" onclick="openLink(this.getAttribute('data-link'))">Source Code</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="skillModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeSkillModal()">&times;</span>
+      <h2 id="skillModalTitle"></h2>
+      <p id="skillModalDescription"></p>
+      <h3 style="text-align: left; margin-top: 20px; color: #333;">Skill Focus:</h3>
+      <ul id="skillModalBullets"></ul>
+    </div>
+  </div>
+
+  <div class="modal" id="educationModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeEducationModal()">&times;</span>
+      <h2 id="educationModalTitle"></h2>
+      <h3 id="educationModalInstitution"></h3>
+      <p class="modal-text-with-icon" id="educationModalLocation"><i class='bx bx-map-pin'></i> <span></span></p>
+      <p id="educationModalDescription"></p>
+      <h3 style="text-align: left; margin-top: 20px; color: #333;">Highlights:</h3>
+      <ul id="educationModalBullets"></ul>
+    </div>
+  </div>
+
+  <div class="modal" id="seminarContentModal">
+      <div class="modal-content">
+          <span class="close-btn" onclick="closeSeminarContentModal()">&times;</span>
+          <h2 id="seminarContentModalTitle"></h2>
+          <p id="seminarContentModalText"></p>
+          <img id="seminarContentModalImage" src="" alt="Seminar Content Image" style="max-width: 90%; height: auto; margin-top: 20px; border-radius: 8px; display: none;">
+      </div>
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="contact-left">
+      <h2>Let's Get In Touch!</h2>
+      <p>I’m excited to hear from you! Whether it’s for collaboration, questions, or you just want to say hi — send me a message and I’ll get back to you!</p>
+      <div class="info">
+        <div>📧 <a href="mailto:agramirez2004040804@gmail.com">agramirez2004040804@gmail.com</a></div>
+        <div>📱 <a href="tel:+639082076876">+63 908 207 6876</a></div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject" required>
+        <textarea placeholder="Your Message..." required></textarea>
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; margin-top: 10px;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>&copy; 2025 Angel Grace Ramirez. All rights reserved.</footer>
+
+  <script>
+    const projectDetails = {
+      'Portfolio Website': {
+        description: `This project is my personal portfolio website, built using modern web technologies. It serves as a dynamic showcase of my academic journey, acquired skills, and completed projects. The design focuses on a clean, responsive aesthetic with interactive elements to provide an engaging user experience.`,
+        technologies_used: ['HTML5', 'CSS3 (Flexbox, Grid, Glassmorphism)', 'JavaScript (DOM Manipulation, Carousel Logic)', 'Boxicons'],
+        key_learnings: [
+          'Mastered responsive design principles for cross-device compatibility.',
+          'Implemented interactive UI components from scratch (carousel, modals).',
+          'Learned to organize and structure a large single-page application.',
+          'Enhanced CSS styling techniques including \`backdrop-filter\` for glassmorphism.',
+        ],
+        live_demo_link: '#',
+        source_code_link: 'https://github.com/yourusername/portfolio-repo',
+      },
+      'Android Studio Application': {
+        description: `Developed a basic Android application using Android Studio. This introductory project focused on understanding fundamental Android components, designing user interfaces with XML layouts, and implementing basic interactivity with Java (or Kotlin). It solidified my foundational mobile development skills.`,
+        technologies_used: ['Android Studio', 'Java (or Kotlin)', 'XML Layouts'],
+        key_learnings: [
+          'Basic Android app lifecycle and component interaction.',
+          'UI design principles for mobile applications.',
+          'Handling user input and basic data display.',
+          'Debugging and testing within the Android Studio environment.',
+        ],
+        live_demo_link: '#',
+        source_code_link: 'https://github.com/yourusername/android-app-repo',
+      },
+      'High and Low Python Code': {
+        description: `Implemented the classic 'Higher or Lower' number guessing game using Python. This console-based application demonstrates core programming concepts suchs random number generation, conditional statements (if/else), loops (while loops), and handling user input, providing a clear example of basic Python logic.`,
+        technologies_used: ['Python 3'],
+        key_learnings: [
+          'Fundamentals of conditional logic and loop structures.',
+          'Generating and using random numbers in programming.',
+          'Basic I/O: Reading input and printing output to console.',
+          'Implementing simple game mechanics.',
+        ],
+        live_demo_link: '#',
+        source_code_link: 'https://github.com/yourusername/higher-lower-python',
+      },
+      'Stopwatch Game': {
+        description: `Created a simple interactive stopwatch application, which can also be adapted into a game element. This project focuses on utilizing JavaScript's timing functions (setInterval, clearInterval) to manage time, and dynamic DOM manipulation to update the display in real-time. It highlights attention to precise timing and user interaction.`,
+        technologies_used: ['HTML', 'CSS', 'JavaScript'],
+        key_learnings: [
+          'JavaScript timing functions and event handling.',
+          'Dynamic updates of the Document Object Model (DOM).',
+          'Implementing clear and responsive user controls.',
+          'Concepts of real-time display and state management.',
+        ],
+        live_demo_link: '#',
+        source_code_link: 'https://github.com/yourusername/stopwatch-game',
+      },
+      'Guessing Game': {
+        description: `Developed a basic number guessing game, challenging players to guess a randomly generated number within a certain range. This project serves as a practical exercise in fundamental programming constructs such as loops, conditional statements, and user input validation, enhancing logical thinking and problem-solving skills.`,
+        technologies_used: ['JavaScript (or Python/Java, depending on initial context)'],
+        key_learnings: [
+          'Conditional logic and decision-making in code.',
+          'Input validation and error handling.',
+          'Looping mechanisms for game progression.',
+          'Basic algorithm design for interactive games.',
+        ],
+        live_demo_link: '#',
+        source_code_link: 'https://github.com/yourusername/guessing-game',
+      },
+    };
+
+    const skillDetails = {
+      'Singing': {
+        description: 'My passion extends beyond code to the stage! Singing has been a lifelong hobby, allowing me to express creativity and connect with audiences. It has honed my discipline and performance skills.',
+        bullets: [
+          'Vocal Range: Soprano',
+          'Experience: Choir member, solo performances at school events.',
+          'Benefits: Boosts confidence, improves breath control, enhances discipline.',
+        ]
+      },
+      'Basic HTML': {
+        description: 'Proficient in structuring web content using HTML. I understand semantic HTML5, common tags, and proper document structure.',
+        bullets: [
+          'Core Concepts: Semantic HTML5, document structure, forms, tables.',
+          'Practical Use: Building basic page layouts, integrating media.',
+          'Tools: VS Code, Chrome DevTools.',
+        ]
+      },
+      'Basic CSS': {
+        description: 'Capable of styling web pages using CSS to create visually appealing and responsive designs. I have a grasp of selectors, box model, Flexbox, and basic Grid.',
+        bullets: [
+          'Core Concepts: Selectors, Box Model, Flexbox, basic Grid.',
+          'Practical Use: Styling layouts, typography, colors, animations.',
+          'Tools: VS Code, browser developer tools for debugging.',
+        ]
+      },
+      'Basic JavaScript': {
+        description: 'Fundamental understanding of JavaScript for adding interactivity to web pages. I can manipulate the DOM, handle events, and work with basic data structures.',
+        bullets: [
+          'Core Concepts: Variables, data types, functions, conditionals, loops.',
+          'Practical Use: DOM manipulation, event handling, form validation.',
+          'Tools: VS Code, browser console for debugging.',
+        ]
+      },
+      'Basic Python': {
+        description: 'Entry-level proficiency in Python for scripting, data manipulation, and simple application development. Familiar with Python syntax and core libraries.',
+        bullets: [
+          'Core Concepts: Data types, control flow, functions, basic file I/O.',
+          'Practical Use: Small scripts, data processing, command-line tools.',
+          'Tools: VS Code, Jupyter Notebooks.',
+        ]
+      },
+      'Basic Packet Tracer': {
+        description: 'Familiar with Cisco Packet Tracer for network simulation and design. I can configure basic network devices like routers and switches, and simulate network topologies.',
+        bullets: [
+          'Core Concepts: Network topologies, IP addressing, basic routing/switching.',
+          'Practical Use: Simulating LAN/WAN networks, troubleshooting network issues.',
+          'Tools: Cisco Packet Tracer software.',
+        ]
+      },
+      'Drawing': {
+        description: 'A creative outlet and a skill that helps in visualizing concepts. I enjoy drawing various subjects, from technical sketches to character designs.',
+        bullets: [
+          'Styles: Technical drawing, sketching, character design.',
+          'Benefits: Enhances creativity, improves attention to detail, visual communication.',
+        ]
+      },
+      'Basic PC Troubleshooting and Maintenance': {
+        description: 'Able to diagnose and resolve common computer issues, perform routine maintenance, and ensure system efficiency. Understanding of hardware components and software interactions.',
+        bullets: [
+          'Hardware: Basic component identification, connection troubleshooting.',
+          'Software: OS reinstallation, driver updates, virus removal.',
+          'Maintenance: Disk cleanup, system optimization.',
+        ]
+      },
+      'Being Athletic': {
+        description: 'Engaging in various sports and physical activities. This has instilled discipline, teamwork, and resilience.',
+        bullets: [
+          'Activities: Basketball, volleyball, running.',
+          'Benefits: Physical fitness, teamwork, stress relief, perseverance.',
+        ]
+      },
+      'Basic Java': {
+        description: 'Foundational knowledge of Java programming for object-oriented development. Familiar with basic syntax, data types, and control structures.',
+        bullets: [
+          'Core Concepts: OOP principles, classes, objects, methods, inheritance.',
+          'Practical Use: Simple console applications, understanding Java ecosystem.',
+          'Tools: Eclipse, IntelliJ IDEA.',
+        ]
+      },
+      'Basic Arduino': {
+        description: 'Experience with Arduino for basic electronics projects and embedded systems. I can write simple sketches to control sensors, actuators, and interact with hardware.',
+        bullets: [
+          'Core Concepts: Microcontroller basics, input/output operations, simple circuits.',
+          'Practical Use: Sensor data data reading, LED control, motor control.',
+          'Tools: Arduino IDE, breadboards, basic electronic components.',
+        ]
+      },
+      'Communication': {
+        description: 'Strong interpersonal and communication skills, enabling effective collaboration and clear expression of ideas. Adept at both verbal and written communication.',
+        bullets: [
+          'Verbal: Presentations, team discussions, active listening.',
+          'Written: Documentation, reports, clear email correspondence.',
+          'Benefits: Effective teamwork, clear problem articulation, strong presentations.',
+        ]
+      },
+      'Creativity': {
+        description: 'A natural inclination for innovative thinking and finding unique solutions to problems. I enjoy exploring new ideas and approaches.',
+        bullets: [
+          'Problem Solving: Brainstorming unique solutions, thinking outside the box.',
+          'Design: Conceptualizing novel interfaces and user experiences.',
+          'Adaptability: Adjusting to new challenges with fresh perspectives.',
+        ]
+      },
+      'Basic Debugging': {
+        description: 'Capable of identifying and resolving software bugs and issues in code. Familiar with debugging tools and methodologies across different programming environments.',
+        bullets: [
+          'Methodologies: Breakpoints, step-through execution, logging.',
+          'Tools: Integrated debugger in IDEs (VS Code, Android Studio).',
+          'Benefits: Efficient problem-solving, improved code quality.',
+        ]
+      },
+      'Problem Solving': {
+        description: 'A systematic approach to breaking down complex problems and devising effective solutions. I enjoy analytical challenges and finding optimal paths forward.',
+        bullets: [
+          'Approach: Analyze, plan, execute, review.',
+          'Skills: Logical reasoning, critical thinking, algorithm design.',
+          'Application: Debugging, project planning, technical challenges.',
+        ]
+      },
+      'Basic Microprocessor Design': {
+        description: 'Introductory knowledge of microprocessor architectures and their fundamental components. Understanding of how processors execute instructions and interact with memory/peripherals.',
+        bullets: [
+          'Concepts: CPU components, instruction sets, memory hierarchy.',
+          'Practical Use: Understanding embedded systems, low-level programming.',
+          'Tools: Simulation tools, basic assembly language.',
+        ]
+      },
+      'Basic Coding': {
+        description: 'Foundational ability to write, understand, and debug code in multiple programming languages. Emphasis on clean, readable, and functional code.',
+        bullets: [
+          'Languages: Python, Java, C++, JavaScript.',
+          'Concepts: Variables, loops, conditionals, functions, data structures.',
+          'Practice: Daily coding exercises, small personal projects.',
+        ]
+      },
+      'Basic Software Development': {
+        description: 'Familiarity with the phases of the software development life cycle (SDLC) and basic principles of software engineering. Understanding of requirements gathering, design, implementation, and testing.',
+        bullets: [
+          'SDLC Phases: Requirements, Design, Implementation, Testing, Deployment.',
+          'Concepts: Version control (Git), modular programming, basic testing.',
+          'Tools: GitHub, IDEs, project management tools.',
+        ]
+      },
+      'Basic Data Structures and Algorithms': {
+        description: 'Understanding of fundamental data structures like arrays, linked lists, stacks, queues, and basic algorithms for sorting and searching. Essential for efficient problem-solving in computer science.',
+        bullets: [
+          'Data Structures: Arrays, Linked Lists, Stacks, Queues, Trees (basic).',
+          'Algorithms: Sorting (Bubble, Selection, Insertion), Searching (Linear, Binary).',
+          'Benefits: Optimized code, efficient problem-solving.',
+        ]
+      },
+      'Basic Coding Skills': {
+        description: 'This encompasses the fundamental ability to write clear, concise, and functional code across different programming paradigms. It includes understanding syntax, basic logic, and debugging.',
+        bullets: [
+          'Syntax & Logic: Core understanding of programming language rules and flow.',
+          'Problem Decomposition: Breaking down problems into smaller, manageable coding tasks.',
+          'Readability: Writing code that is easy to understand and maintain.',
+          'Debugging: Basic techniques to identify and fix errors in code.'
+        ]
+      }
+    };
+
+    const educationDetails = {
+        'Bachelor of Science in Computer Engineering': {
+            institution: 'University of the East',
+            years: 'Present', /* No specific dates */
+            location: 'Manila, Philippines',
+            description: 'Currently pursuing a Bachelor of Science in Computer Engineering, where I am building a strong foundation in hardware, software, and networking principles. My coursework includes programming, digital design, data structures, and algorithms, preparing me for a dynamic career in technology.',
+            bullets: [
+                'Core Courses: Data Structures & Algorithms, Digital Logic Design, Object-Oriented Programming, Microprocessor Systems.',
+                'Projects: Various programming assignments, hardware simulations.',
+                'Key Skills: C++, Java, Python, problem-solving, critical thinking.'
+            ]
+        },
+        'Senior High School - STEM Strand': {
+            institution: 'Panpacific University North Philippines-Tayug Campus',
+            years: 'Completed', /* No specific dates */
+            location: 'Lopez Jaena Street, Tayug, Pangasinan',
+            description: 'Completed Senior High School under the Science, Technology, Engineering, and Mathematics (STEM) strand. This program provided advanced concepts in mathematics and sciences, fostering my analytical skills and preparing me for engineering studies.',
+            bullets: [
+                'Focus Areas: Advanced Mathematics, Physics, Chemistry, Biology.',
+                'Activities: Science fairs, research projects.',
+                'Awards: Academic excellence awards.',
+            ]
+        },
+        'Junior High School': {
+            institution: 'Panpacific University North Philippines-Tayug Campus',
+            years: 'Completed', /* No specific dates */
+            location: 'Lopez Jaena Street, Tayug, Pangasinan',
+            description: 'My junior high school years laid the groundwork for my academic pursuits, emphasizing core subjects and extracurricular involvement. I developed foundational study habits and explored various interests.',
+            bullets: [
+                'Core Subjects: English, Math, Science, Filipino, Social Studies.',
+                'Extracurriculars: School clubs, sports activities.',
+                'Achievements: Consistent honor student.',
+            ]
+        },
+        'Elementary School': {
+            institution: 'Panpacific University North Philippines-Tayug Campus',
+            years: 'Completed', /* No specific dates */
+            location: 'Lopez Jaena Street, Tayug, Pangasinan',
+            description: 'My elementary education provided me with fundamental learning skills and a curious mindset. It was here that my interest in various subjects began to blossom.',
+            bullets: [
+                'Basic Subjects: Reading, Writing, Arithmetic.',
+                'Activities: School plays, art classes.',
+                'Foundation: Developed strong foundational literacy and numeracy skills.',
+            ]
+        }
+    };
+
+    const seminarDetails = {
+      'seminar1': {
+        type: 'link', // Changed to link
+        link: 'https://www.facebook.com/story.php?story_fbid=824865769653518&id=100063903066747&rdid=mWbaDbO4oG2AX9dC#', // New link
+        title: 'Cybersecurity Forum',
+        date: '',
+        text: 'Attended a comprehensive forum on modern cybersecurity threats and defense strategies.',
+        icon: 'bx bxs-platform'
+      },
+      'seminar2': {
+        type: 'image',
+        image: 'https://raw.githubusercontent.com/suenonikki/my-profile-site/main/9443522a-1d16-4a42-95f2-4f644ea67251.jpg', // New image link
+        title: 'Mobile App Dev Workshop',
+        date: '',
+        text: 'Hands-on workshop covering the basics of Android application development.',
+        icon: 'bx bx-mobile-alt'
+      },
+      'seminar3': {
+        type: 'link',
+        link: 'https://www.facebook.com/uescpes/posts/pfbid0FjdkjChDHhizkeAUZivSzwHvxZwLQQsFTpfybrKkMq8xocLqaohXE6NBU26xZL7nl',
+        title: 'Cloud Computing Basics',
+        date: '',
+        text: 'Introduction to cloud services, deployment models, and key providers.',
+        icon: 'bx bx-cloud'
+      },
+      'seminar4': {
+        type: 'content',
+        title: 'Emerging Technologies Set 2',
+        date: '',
+        text: `Hey, @everyone !   
+The 2nd set of our Emerging Technologies Seminar-Series kicks off tomorrow, 12:00 PM to 5:00 PM at LB 413. Attendance is required for 3rd and 4th year students. 1st and 2nd years are welcome and encouraged to join!
+
+Don't miss out on exciting talks and fresh tech insights. See you there!`,
+        icon: 'bx bx-code-alt'
+      }
+    };
+
+    const projectModal = document.getElementById('projectModal');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalDescription = document.getElementById('projectModalDescription');
+    const projectModalTechs = document.getElementById('projectModalTechs');
+    const projectModalLearnings = document.getElementById('projectModalLearnings');
+    const liveDemoBtn = document.getElementById('liveDemoBtn');
+    const sourceCodeBtn = document.getElementById('sourceCodeBtn');
+
+    function openProjectModal(projectName) {
+      const details = projectDetails[projectName];
+      if (details) {
+        projectModalTitle.textContent = projectName;
+        projectModalDescription.textContent = details.description;
+
+        projectModalTechs.innerHTML = '';
+        details.technologies_used.forEach(tech => {
+          const li = document.createElement('li');
+          li.innerHTML = `<i class='bx bx-check-circle'></i> <span>${tech}</span>`;
+          projectModalTechs.appendChild(li);
+        });
+
+        projectModalLearnings.innerHTML = '';
+        details.key_learnings.forEach(learning => {
+          const li = document.createElement('li');
+          li.innerHTML = `<i class='bx bx-bulb'></i> <span>${learning}</span>`;
+          projectModalLearnings.appendChild(li);
+        });
+
+        liveDemoBtn.setAttribute('data-link', details.live_demo_link);
+        sourceCodeBtn.setAttribute('data-link', details.source_code_link);
+
+        liveDemoBtn.style.display = (details.live_demo_link === '#') ? 'none' : 'inline-block';
+        sourceCodeBtn.style.display = (details.source_code_link === '#') ? 'none' : 'inline-block';
+
+        projectModal.style.display = 'flex';
+      }
+    }
+
+    function closeProjectModal() {
+      projectModal.style.display = 'none';
+    }
+
+    function openLink(url) {
+        if (url && url !== '#') {
+            window.open(url, '_blank');
+        } else {
+            alert('Link not available yet!');
+        }
+    }
+
+    const skillModal = document.getElementById('skillModal');
+    const skillModalTitle = document.getElementById('skillModalTitle');
+    const skillModalDescription = document.getElementById('skillModalDescription');
+    const skillModalBullets = document.getElementById('skillModalBullets');
+
+    function openSkillModal(element, skillName) {
+      const details = skillDetails[skillName];
+      if (details) {
+        skillModalTitle.textContent = skillName;
+        skillModalDescription.textContent = details.description;
+
+        skillModalBullets.innerHTML = '';
+        details.bullets.forEach(bullet => {
+          const li = document.createElement('li');
+          li.innerHTML = `<i class='bx bx-check'></i> <span>${bullet}</span>`;
+          skillModalBullets.appendChild(li);
+        });
+
+        skillModal.style.display = 'flex';
+      }
+    }
+
+    function closeSkillModal() {
+      skillModal.style.display = 'none';
+    }
+
+    const educationModal = document.getElementById('educationModal');
+    const educationModalTitle = document.getElementById('educationModalTitle');
+    const educationModalInstitution = document.getElementById('educationModalInstitution');
+    // const educationModalYears = document.getElementById('educationModalYears').querySelector('span'); // Removed for date removal
+    const educationModalLocation = document.getElementById('educationModalLocation').querySelector('span');
+    const educationModalDescription = document.getElementById('educationModalDescription');
+    const educationModalBullets = document.getElementById('educationModalBullets');
+
+    function openEducationModal(educationName) {
+        const details = educationDetails[educationName];
+        if (details) {
+            educationModalTitle.textContent = educationName;
+            educationModalInstitution.textContent = details.institution;
+            // Removed specific date display
+            // educationModalYears.textContent = details.years; // Removed for date removal
+            educationModalLocation.textContent = details.location;
+            educationModalDescription.textContent = details.description;
+
+            educationModalBullets.innerHTML = '';
+            details.bullets.forEach(bullet => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class='bx bx-star'></i> <span>${bullet}</span>`;
+                educationModalBullets.appendChild(li);
+            });
+
+            educationModal.style.display = 'flex';
+        }
+    }
+
+    function closeEducationModal() {
+        educationModal.style.display = 'none';
+    }
+
+    const seminarContentModal = document.getElementById('seminarContentModal');
+    const seminarContentModalTitle = document.getElementById('seminarContentModalTitle');
+    const seminarContentModalText = document.getElementById('seminarContentModalText');
+    const seminarContentModalImage = document.getElementById('seminarContentModalImage');
+
+    function handleSeminarClick(seminarId) {
+        const details = seminarDetails[seminarId];
+        if (!details) return;
+
+        if (details.type === 'link') {
+            window.open(details.link, '_blank');
+        } else if (details.type === 'image') {
+            seminarContentModalTitle.textContent = details.title;
+            seminarContentModalText.style.display = 'none';
+            seminarContentModalImage.src = details.image;
+            seminarContentModalImage.style.display = 'block';
+            seminarContentModal.style.display = 'flex';
+        } else if (details.type === 'content') {
+            seminarContentModalTitle.textContent = details.title;
+            seminarContentModalText.textContent = details.text;
+            seminarContentModalText.style.display = 'block';
+            seminarContentModalImage.style.display = 'none';
+            seminarContentModal.style.display = 'flex';
+        }
+    }
+
+    function closeSeminarContentModal() {
+        seminarContentModal.style.display = 'none';
+        seminarContentModalImage.src = '';
+    }
+
+    const carouselTrack = document.getElementById('skillCarouselTrack');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const carouselDotsContainer = document.getElementById('carouselDots');
+    let currentIndex = 0;
+    let itemsPerView = 4; // Default value, will be updated by updateItemsPerView
+    let autoSlideInterval;
+
+    function updateItemsPerView() {
+      if (window.innerWidth <= 480) {
+        itemsPerView = 1;
+      } else if (window.innerWidth <= 768) {
+        itemsPerView = 2;
+      } else if (window.innerWidth <= 1024) {
+        itemsPerView = 3;
+      } else {
+        itemsPerView = 4;
+      }
+    }
+
+    function updateCarousel() {
+      updateItemsPerView();
+      if (carouselItems.length === 0) return;
+
+      const itemWidth = carouselItems[0].offsetWidth + (parseFloat(getComputedStyle(carouselItems[0]).marginLeft) * 2);
+      const trackWidth = itemWidth * carouselItems.length;
+      carouselTrack.style.width = `${trackWidth}px`;
+
+      const maxIndex = Math.max(0, carouselItems.length - itemsPerView);
+      currentIndex = Math.min(currentIndex, maxIndex); // Ensure currentIndex doesn't exceed maxIndex
+
+      const offset = -currentIndex * itemWidth;
+      carouselTrack.style.transform = `translateX(${offset}px)`;
+
+      updateDots();
+    }
+
+    function moveCarousel(direction) {
+      resetAutoSlide(); // Reset timer on manual interaction
+      updateItemsPerView();
+      const totalItems = carouselItems.length;
+      const maxIndex = Math.max(0, totalItems - itemsPerView);
+
+      currentIndex += direction;
+
+      if (currentIndex > maxIndex) {
+        currentIndex = 0; // Loop back to the beginning
+      } else if (currentIndex < 0) {
+        currentIndex = maxIndex; // Loop to the end
+      }
+
+      updateCarousel();
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            moveCarousel(1);
+        }, 5000); // Change slide every 5 seconds
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+
+
+    function createDots() {
+        carouselDotsContainer.innerHTML = '';
+        updateItemsPerView();
+        const totalItems = carouselItems.length;
+        // Each dot represents a "page" or "view" of items
+        const totalPages = Math.ceil(totalItems / itemsPerView);
+
+        for (let i = 0; i < totalItems; i++) { // One dot per item initially, can be changed to per-page
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            dot.setAttribute('data-index', i);
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateCarousel();
+                resetAutoSlide(); // Reset timer on dot click
+            });
+            carouselDotsContainer.appendChild(dot);
+        }
+        updateDots(); // Call to set the initial active dot
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.carousel-dots .dot');
+        dots.forEach((dot, index) => {
+            dot.classList.remove('active');
+            if (index === currentIndex) { // Only highlight dot corresponding to the current first item
+                dot.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('load', () => {
+        createDots();
+        updateCarousel();
+        startAutoSlide(); // Start auto-slide on load
+    });
+    window.addEventListener('resize', () => {
+        createDots();
+        updateCarousel();
+        resetAutoSlide(); // Reset auto-slide on resize to adjust to new view
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === projectModal) {
+        closeProjectModal();
+      }
+      if (event.target === skillModal) {
+        closeSkillModal();
+      }
+      if (event.target === educationModal) {
+        closeEducationModal();
+      }
+      if (event.target === seminarContentModal) {
+        closeSeminarContentModal();
+      }
+    });
+
+  </script>
+</body>
+</html>
